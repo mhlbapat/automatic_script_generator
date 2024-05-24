@@ -1,13 +1,6 @@
 # Automatic Script Generator:
 In computational research, it is often required to generate lots of scripts with different values for the same parameter in a parametric study or a high-throughput run. "Automatic Script Generator" provides an easy way to create these scripts by utilizing the "meshgrid" function from "numpy" library in python and reading the parameter values from an excel sheet to generate the required number of scripts.
 
-## Installing the package:
-To install run the following commands from a terminal on your system:
-    
-    git clone https://github.com/S22-06682/project-mhlbapat.git
-    cd project-mhlbapat
-    pip install src
-
 ## Using the package:
 The installation of the package provides access to the function called "create_files.py" which takes in 3 arguments in the following order:
 1. Path of the excel sheet which contains the parameter values. More information about creating a custom excel sheet is given in the section below.
