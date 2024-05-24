@@ -116,11 +116,11 @@ def all_files_generator(path_excel_file, path_lammps_files):
 				property_vals_new[property_names_new.values==loop_names[j]] = parameter_loop_vals[j][jval]
 
 			values_file_new.to_excel(new_excel_file, index=False)
-			# source_data_file_liquid = property_vals_new.values[property_names_new.values=='read_data_liquid'][0]
+			source_data_file_liquid = property_vals_new.values[property_names_new.values=='read_data_liquid'][0]
 			source_data_file_solid = property_vals_new.values[property_names_new.values=='read_data_solid'][0]
 
 			lammps_script_name = excel_to_lammps_generator(new_excel_file, new_dir_name, path_lammps_files)
-			# copy_data_file(source_data_file_liquid, new_dir_name+slash_use)
+			copy_data_file(source_data_file_liquid, new_dir_name+slash_use)
 			copy_data_file(source_data_file_solid, new_dir_name+slash_use)
 			generate_batch_script(n_nodes, n_cores, n_threads, new_dir_name, lammps_script_name)
 

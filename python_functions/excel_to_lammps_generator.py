@@ -15,8 +15,8 @@ def excel_to_lammps_generator(path_excel_file, new_dir_name, path_lammps_files):
 	property_names_new = values_file_new[values_file_new.columns[0]]
 	property_vals_new = values_file_new[values_file_new.columns[1]]
 
-	script_name = (new_dir_name +slash_use+ 'gcmc_fluid_flow_temp' + str(property_vals_new[property_names_new=='temperature'].values[0]) 
-		+ '_num_mem_' + str(property_vals_new[property_names_new=='num_membranes'].values[0]) + '.in')
+	script_name = (new_dir_name +slash_use+ 'slip-flow_temp-' + str(property_vals_new[property_names_new=='temperature'].values[0]) 
+		+ '_1e5half-shear_' + str(property_vals_new[property_names_new=='submega_half_shear'].values[0]) + '.in')
 
 
 	# Initialize the base script
@@ -39,20 +39,20 @@ def excel_to_lammps_generator(path_excel_file, new_dir_name, path_lammps_files):
 		temp_name = property_names_new[i] + '_valpy'
 		temp_content = temp_content.replace(temp_name, str(property_vals_new[i]))
 
-	# Change the output frequecy for lammps trajectory based on the gcmc_eqm_time, default multiplier: 0.02
-	trajectory_times_defvalpy = str(int(0.02*property_vals_new[property_names_new=='gcmc_eqm_time'].values[0]))
+	# Change the output frequecy for lammps trajectory based on the slipeq_time, default multiplier: 0.02
+	trajectory_times_defvalpy = str(int(0.02*property_vals_new[property_names_new=='slipeq_time'].values[0]))
 	temp_content = temp_content.replace('trajectory_times_defvalpy',trajectory_times_defvalpy)
 
-	# Change the output frequecy for velocity averaging based on the gcmc_eqm_time
-	binvelavg_defvalpy = str(int(0.001*property_vals_new[property_names_new=='gcmc_eqm_time'].values[0]))
+	# Change the output frequecy for velocity averaging based on the slipeq_time
+	binvelavg_defvalpy = str(int(0.001*property_vals_new[property_names_new=='slipeq_time'].values[0]))
 	temp_content = temp_content.replace('binvelavg_defvalpy',binvelavg_defvalpy)
 
-	# Change the output frequecy for ncount averaging based on the gcmc_eqm_time
-	force_on_membrane_defvalpy = str(int(0.02*property_vals_new[property_names_new=='gcmc_eqm_time'].values[0]))
-	temp_content = temp_content.replace('force_on_membrane_defvalpy',force_on_membrane_defvalpy)
+	# Change the output frequecy for ncount averaging based on the slipeq_time
+	ncountavg_defvalpy = str(int(0.05*property_vals_new[property_names_new=='slipeq_time'].values[0]))
+	temp_content = temp_content.replace('ncountavg_defvalpy',ncountavg_defvalpy)
 
 	# Change Nose-Hoover damp constant
-	temp_content = temp_content.replace('nose_hoover_damp_defvalpy', '10000')
+	temp_content = temp_content.replace('nose_hoover_damp_defvalpy', '25000')
 
 	# solid_wall_filename = property_vals_new[property_names_new=='read_data_solid'].values[0]
 

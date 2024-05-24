@@ -3,6 +3,7 @@ import sys
 
 os.chdir('..')
 sys.path.insert(0,os.getcwd())
+print(os.getcwd())
 
 from python_functions.all_files_generator import all_files_generator
 from python_functions.copy_data_file import copy_data_file
@@ -23,8 +24,8 @@ Click in the excel file to perform:
 
 # datafile_to_run_simulations = np.loadtxt('simulation_files_to_run.csv',dtype='str', delimiter=',')
 
-excel_sheet_to_read = 'GCMC-flow-GO.xlsm'
-lammps_folder_containing_scripts = 'lammps-gcmc-base'
+excel_sheet_to_read = 'script_parameters.xlsx'
+lammps_folder_containing_scripts = 'lammps_base'
 
 old_datetime = str(datetime.now()).replace(' ','_').replace(':','--')
 
@@ -34,14 +35,14 @@ if 'all_user_files' in already_present:
 
 # all_files_generator(excel_sheet_to_read, lammps_folder_containing_scripts)
 
-try:
-	all_files_generator(excel_sheet_to_read, lammps_folder_containing_scripts)
-	print('Done...')
+# try:
+all_files_generator(excel_sheet_to_read, lammps_folder_containing_scripts)
+print('Done...')
 	
-except Exception as script_error:
-	sys.stdout = open("script_error.txt",'a')
-	print(script_error)
-	sys.stdout.close()
+# except Exception as script_error:
+	# sys.stdout = open("script_error.txt",'a')
+	# print(script_error)
+	# sys.stdout.close()
 
 
 # For reading from data file - Files to run 1-May-2022
