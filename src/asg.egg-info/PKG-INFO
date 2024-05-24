@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: asg
+Version: 0.0.1
+Summary: Generate high-throughput scripts automatically
+Home-page: UNKNOWN
+Maintainer: Mehul Bapat
+Maintainer-email: mbapat@andrew.cmu.edu
+License: GPL
+Platform: UNKNOWN
+License-File: LICENSE
+
+
+      Generation of high-throughput scripts from excel sheet and base script
+
